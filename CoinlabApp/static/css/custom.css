@@ -1,0 +1,341 @@
+body, html {
+    height: 100%;
+}
+.navbar-inverse {
+    background-color: transparent;
+    border-color: transparent;
+    top:5%;
+padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.scroll{
+    background-color: rgba(0,0,0,0.7);
+    border-color: transparent;
+    top: 0;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px dimgrey;
+}
+.brand-name{
+    padding-left: 30px;
+    margin-right: 50px;
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    font-size: 40px;
+}
+
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+background-color: #5BB12F;
+    border-radius: 5px;
+}
+li.text{
+        text-transform: uppercase;
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+.white{
+        color: floralwhite !important;
+}
+
+
+
+
+.mycarousel-caption1{
+    
+    position: absolute;
+    z-index: 10;
+    padding-top: 20px;
+    color: #fff;
+    text-align: center;
+left: 12%;
+    right: 10%;
+    bottom: 35%;
+}
+
+
+.largeh1{
+    font-size: 60px;
+    font-family: 'Quicksand', sans-serif;
+}
+.mediumh2{
+    font-size: 40px;
+        font-family: 'Quicksand', sans-serif;
+}
+@media(max-width:500px){
+    #landing,#india,#demo,#heartly,#wel{
+        font-size: 25px;
+        font-family: 'Quicksand', sans-serif;
+    color:floralwhite;
+    margin: 0;
+    }
+    #to,#join{
+        font-size: 15px;
+              font-family: 'Quicksand', sans-serif;
+    color:floralwhite;
+        margin: 5px 0 2px 0;
+    }
+    .mycarousel-caption1{
+        bottom: 30%;
+    }
+    .navbar-inverse{
+        top:0;
+    }
+    #caption2{
+        bottom: 30%;
+    }
+    .btn-block{
+        width:45%
+    }
+    .button-box{
+        display: flex;
+    }
+    .btn-block+btn-block{
+        margin-top: 0;
+    }
+    #caption3{
+        bottom:18%;
+    }
+    .logbox{
+        padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+    .register{
+        font-size: 19px;
+    }
+    .line{
+        margin: 3px 0 3px 0;
+    }
+}
+
+
+.mycarousel-caption2{
+    
+    position: absolute;
+    z-index: 10;
+    padding-top: 20px;
+    color: #fff;
+    text-align: center;
+        left: 12%;
+    right: 10%;
+    bottom: 35%;
+}
+.brand-name2{
+        font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    color: #5BB12F;
+}
+
+.time{
+    font-size: 135px;
+     font-family: 'Quicksand', sans-serif;
+}
+.coming{
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    color: #5BB12F;
+    font-size: 80px;
+}
+
+.mycarousel-caption3{
+     position: absolute;
+    z-index: 10;
+    padding-top: 20px;
+    color: #fff;
+    text-align: center;
+        left: 12%;
+    right: 10%;
+    bottom: 40%;
+}
+
+.box{
+    background-color: rgba(0,0,0,0.4);
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url('../img/pencil2.jpg');
+
+    /* Full height */
+    height: 80%; 
+ font-family: 'Quicksand', sans-serif;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%100%;
+}
+
+
+
+
+.largetime{
+font-family: 'Quicksand', sans-serif;
+    color:floralwhite;
+    font-size: 60px;
+}
+
+@media(max-width:500px){
+    .rotate{
+        width:23%;
+    }
+    .upper-space{
+        max-height: 112px;
+    }
+}
+
+
+.about{
+    text-align: center;
+ font-family: 'Quicksand', sans-serif;
+    margin-top: 120px;
+}
+.icon-size{
+    width: 40%;
+}
+.company-content{
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+@media(max-width:500px){
+    .about{
+        margin-top: 70px;
+    }
+    .info-box{
+        margin-bottom: 25px;
+    }
+}
+.img-size{
+    width: 100%
+}
+.team{
+     font-family: 'Quicksand', sans-serif;
+    margin-top: 40px;
+}
+.team-content{
+    margin-top: 90px;
+    margin-bottom: 90px;
+    text-align: left;
+}
+.bold{
+font-weight: bold;
+}
+.designation{
+    margin: 30px 0 30px 0;
+}
+.info-box{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    padding: 10px;
+}
+.feedbacks{
+     font-family: 'Quicksand', sans-serif;
+}
+.feedback-box{
+    display: -webkit-inline-box;
+    margin: 30px 10px 10px 10px;
+    background: white;
+    padding: 15px 10px 10px 10px;
+    border-radius: 15px;
+}
+.feedback-image{
+    width: 50px;
+    border-radius: 30px;
+    height: 50px;
+}
+
+.feedback-boxm{
+    display: flex;
+    margin-bottom: 10px;
+}
+.feedp{
+    margin-top: 12px;
+}
+
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+     font-family: 'Quicksand', sans-serif;
+}
+
+.post-message{
+    background-color: #5BB12F;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+}
+
+.post-message:hover {
+    background-color: #45a049;
+}
+label{
+     font-family: 'Quicksand', sans-serif;
+}
+
+.contact-us{
+      font-family: 'Quicksand', sans-serif;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.mess-anim{
+    text-align: center;
+    margin-top: 60px;
+}
+.mess-icon{
+    width: 50%;
+}
+.numbers{
+      font-family: 'Quicksand', sans-serif;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.skills {
+  text-align: right;
+  padding-right: 20px;
+  line-height: 30px;
+  color: white;
+}
+
+.html {width: 90%; background-color: #5bb12f;}
+.css {width: 80%; background-color: #5bb12f;}
+.js {width: 85%; background-color: #5bb12f;}
+
+
+.progress-box {
+  width: 90%;
+  background-color: #ddd;
+}
+.features{
+    margin-top: 10px;
+}
+.work{
+          font-family: 'Quicksand', sans-serif;
+    margin:15px 0 15px 10px;
+}
+
+.we_do{
+font-family: 'Quicksand', sans-serif;
+}
+.imgwe{
+    width:634px;
+    height: 357px;
+    border-radius:8px;
+}
+@media(max-width:500px){
+    .imgwe{
+            width: 300px;
+    height: 200px;
+    }
+}

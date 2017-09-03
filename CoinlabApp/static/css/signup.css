@@ -1,0 +1,51 @@
+ body{
+              background-image: url("../img/signupbackground.jpeg");
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+          }
+                    .big-img2{
+              background-image: url("");
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+          }
+          .signup-form{
+              width:42%;
+              position: absolute;
+              top:15%;
+              left: 30%;
+            padding: 30px 30px 50px 30px;
+    background: rgba(0,0,0,0.5);
+          }
+
+          .form-group{
+              margin-top: 20px;
+          }
+          .heading{
+              position: fixed;
+          }
+          .brand-heading{
+              color: #5BB12F;
+                  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+          }
+          .logo-head{
+              position: fixed;
+              top:32%;
+              color: white;
+          }
+
+          .btn-style{
+           font-family: 'Quicksand', sans-serif;
+                  padding-bottom: 8px;
+    padding-top: 8px;
+    margin-top: 25px;
+          }
+          
+                    @media(max-width:500px){
+              div.signup-form{
+                  left:17%;
+                  width:65%;
+              }
+          }
+         
