@@ -26,8 +26,9 @@
       </style>
   </head>
   <body>
+  <form method="post" action="/profile/">
       
-
+    {% csrf_token %}
       
            <div class="heading hidden-md hidden-lg"style="left:33%;">
       <h2 class="brand-heading">Coinlab</h2>
@@ -57,11 +58,11 @@
 
   <div class="form-group">
     <label for="email"><i class="fa fa-envelope"aria-hidden="true"></i>  EMAIL</label>
-    <input type="email" class="form-control" id="email" name="email"required placeholder="abc@example.com">
+    <input type="email" class="form-control" id="email" name="email"required placeholder="abc@example.com" value={{ email }}>
   </div>
   <div class="form-group">
     <label for="pwd"><i class="fa fa-lock"aria-hidden="true"></i>  PASSWORD</label>
-    <input type="password" class="form-control" id="pwd"name="password"required placeholder="******"style="margin-bottom:5px;">
+    <input type="password" class="form-control" id="pwd"name="password"required placeholder="******"style="margin-bottom:5px;"value={{ password }}>
       <a href=""data-toggle="modal" data-target="#forgotpasswordmodal">Forget Password?</a>
   </div>
 

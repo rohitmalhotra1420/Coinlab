@@ -26,7 +26,8 @@
       </style>
   </head>
   <body>
-      
+    <form method="post" >
+      {% csrf_token %}
 
       
            <div class="heading hidden-md hidden-lg"style="left:33%;">
@@ -48,36 +49,38 @@
 
       
       
-      
+
       
       <div class="col-md-6"style="height:inherit;color:white;">
       <div class="signup-form">
             
     <form>
         <div class="form-group">
-    
+
             <label for="usr"><i class="fa fa-user"aria-hidden="true"></i>  NAME</label>
-    <input type="text" class="form-control" id="usr"name="name" placeholder="Your name" required onkeyup="minname(); return false;"><span id="confirmMessage2" class="confirmMessage"></span>
-        </div>   
+    <input type="text" class="form-control" id="usr"name="name" placeholder="Your name" required onkeyup="minname(); return false;"value={{ name }}>
+            <span id="confirmMessage2" class="confirmMessage" ></span>
+        </div>
         
         
   <div class="form-group">
     <label for="email"><i class="fa fa-envelope"aria-hidden="true"></i>  EMAIL</label>
-    <input type="email" class="form-control" id="email" name="email"required placeholder="abc@example.com">
+    <input type="email" class="form-control" id="email" name="email"required placeholder="abc@example.com" value={{ email }}>
   </div>
         
         
   <div class="form-group">
     <label for="pwd"><i class="fa fa-lock"aria-hidden="true"></i>  PASSWORD</label>
-    <input type="password" class="form-control" id="pwd"name="password"required placeholder="****** "onkeyup="minpass(); return false;">
+    <input type="password" class="form-control" id="pwd"name="password"required placeholder="****** "onkeyup="minpass(); return false;" value={{ password }}>
   <span id="confirmMessage3" class="confirmMessage"></span>
   </div>
         
           <div class="form-group">
     <label for="pwd2"><i class="fa fa-lock"aria-hidden="true"></i>  REPEAT PASSWORD</label>
-    <input type="password" class="form-control" id="pwd2"name="repeat-password"required placeholder="******"onkeyup="checkPass(); return false;">
+    <input type="password" class="form-control" id="pwd2"name="repeat-password"required placeholder="******"onkeyup="checkPass(); return false;" value={{ re_password }}>
   <span id="confirmMessage" class="confirmMessage"></span>
         </div>
+        </form>
   <button type="submit" class="btn btn-success btn-block btn-style">SIGN IN</button>
 </form>
           
@@ -97,5 +100,5 @@
     <script src="../static/js/bootstrap.min.js"></script>
               <script type="text/javascript" src="../static/js/pace.min.js"></script>
       <script src="../static/js/custom.js"></script>
-  </body>
+    </body>
 </html>
