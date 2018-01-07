@@ -1,23 +1,43 @@
+
+
+from models import UserModel, indexmodel , feedback_model,PostModel,startmodel
+
+
 from django import forms
-from models import loginmodel,password_rest,signupmodel,indexmodel
 
-class Signupform(forms.ModelForm):
-    class Meta:
-        model=signupmodel
-        fields=['name','email','password','re_password']
+class SignUpForm(forms.ModelForm):
+  class Meta:
+    model = UserModel
+    fields=['email','name','password','re_password']
 
-class Indexform(forms.ModelForm):
+
+class Indexform1(forms.ModelForm):
     class Meta:
         model=indexmodel
+        fields=['first_name','last_name']
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+      model = UserModel
+      fields = ['email', 'password']
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = PostModel
+        fields = ['image', 'caption']
+class Startform(forms.ModelForm):
+    class Meta:
+        mode=startmodel
+        fields=['name','sex','age','theme','country','link','description']
+
+
+class feedback_form(forms.ModelForm):
+    class Meta:
+        model=feedback_model
         fields=['first_name','last_name','subject']
 
-class Loginform(forms.ModelForm):
+class password_form(forms.ModelForm):
     class Meta:
-        model=loginmodel
-        fields=['email','password']
-
-class Resetform(forms.ModelForm):
-    class Meta:
-        model=password_rest
-        fields=['new_password','renew_password']
-
+        model=UserModel
+        fields=['password','re_password']
