@@ -48,17 +48,6 @@ class feedback_model(models.Model):
     subject = models.TextField()
 
 
-class startmodel(models.Model):
-    name = models.CharField(max_length=400)
-    age = models.IntegerField(max_length=20)
-    link = models.URLField()
-    country = models.CharField(max_length=400)
-    theme = models.CharField(max_length=400)
-    description = models.CharField(max_length=400)
-    sex = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
 
 
 class PostModel(models.Model):

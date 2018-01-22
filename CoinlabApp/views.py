@@ -13,8 +13,8 @@ import requests
 
 
 
-from forms import LoginForm, SignUpForm, Indexform1,  feedback_form, password_form,PostForm,Startform
-from models import UserModel, SessionToken, indexmodel, feedback_model,startmodel,PostModel,project_model
+from forms import LoginForm, SignUpForm, Indexform1,  feedback_form, password_form,PostForm , change_pwd_form
+from models import UserModel, SessionToken, indexmodel, feedback_model,PostModel,project_model
 
 CLIENT_ID = '2e8b96d3df82469'
 CLIENT_SECRET = 'f6292d93b81e0f055521eb71084b63b9ccc5329d'
@@ -94,10 +94,22 @@ def activate(request):
 
 
 def profile(request):
-    if request.method=='POST':
-         return render(request,'profile.html')
-    elif request.method=='GET':
-        return render(request,'profile.html')
+   print "profile called"
+   user=check_validation(request)
+   print "user validation in profile checked"
+   print user
+   if user:
+        print "user detalied 1st if"
+        user_now=UserModel.objects.filter(name=user).first()
+        print ' user email is ' , user_now.email
+
+
+        return render(request,'profile.html',{'user':user,'email':user_now.email})
+   else :
+       print ' user not loggedin '
+       return redirect('/login/')
+
+   return render(request,'profile.html')
 # login function
 
 def login_user(request):
@@ -135,12 +147,13 @@ def login_user(request):
                             print ' network error in sending the mail'
                         print "session token start"
                         token = SessionToken(user=user)
+                        print user
                         print "session token result taken"
                         token.create_token()
                         print "create token start - end"
                         token.save()
                         print 'token saved'
-                        response = HttpResponseRedirect('/dashboard/')
+                        response = HttpResponseRedirect('/profile/')
                         print 'redirected to ', response
                         response.set_cookie(key='session_token', value=token.session_token)
                         return response
@@ -173,13 +186,54 @@ def check_validation(request):
 
 
 def logout_view(request):
+    print ' lgogged out'
     user = check_validation(request)
     if user:
         token = SessionToken.objects.filter(user=user)
         token.delete()
-        return redirect('/login/')
+        return redirect('/dashboard/')
     else:
         return redirect('/login/')
+
+
+
+
+def change_password(request):
+    print "change passsword called"
+    user = check_validation(request)
+    print "user validation in change password checked"
+    if request.method == "POST":
+        if user:
+            print "user valid"
+            user_now = UserModel.objects.filter(name=user).first()
+            print ' user email is ', user_now.email
+            form = change_pwd_form(request.POST)
+            print "login form request post"
+            if form.is_valid():
+                print "form valid sstart"
+                new_pwd = form.cleaned_data.get('password')
+                user_now.password=make_password(new_pwd)
+                user_now.save()
+                try:
+                    emaill = EmailMessage('You just Changed password...',
+                                          ' HEY...You just changed pssword on for CHANGE.IO ....Report if it was not you'
+                                          ,
+                                          to=[user_now.email])
+                    emaill.send()
+                    print "email send"
+                except:
+                    print ' network error in sending the mail'
+                print "the following user asked to change password ", user , new_pwd
+                return redirect('/logout/')
+        else:
+            print ' user not loggedin '
+            return redirect('/login/')
+    elif request.method == "GET":
+            print "get method called"
+            return render(request,'password.html',{'user':user})
+
+
+    return  render(request,'password.html')
 
 
 # Create your views here.
@@ -219,41 +273,11 @@ def logout_view(request):
         return redirect('/login/')
 
 
-def start_view(request):
-    if request.method == 'POST':
-        form = Startform(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            sex = form.cleaned_data['sex']
-            age = form.cleaned_data['age']
-            theme = form.cleaned_data['theme']
-            link = form.cleaned_data['link']
-            description = form.cleaned_data['desccription']
-            country = form.cleaned_data['country']
-            # subject = form.cleaned_data['subject']
-            user = indexmodel(name=name, sex=sex, age=age, theme=theme, country=country, link=link,
-                              description=description)
-            user.save()
-            try:
-                # email = form.cleaned_data.get('email')
-                emaill = EmailMessage('New project', 'New project created' + (name),
-                                      to=['instacloneapp@gmail.com'])
-                emaill.send()
-                print "email send to developer"
-            except:
-                print ' network error in sending the mail to developer'
-
-            return render(request, 'dashboard.html')
-        else:
-            print " "
-    elif request.method == 'GET':
-        form = Indexform1()
-    return render(request, 'startproject.html', {'form': form})
 
 
 def dashboard(request):
     print 'dashboard called'
-    user = check_validation(request)
+    '''user = check_validation(request)
     print 'vakidation returned', user
     if user:
         # if user is valid getting all the posts from the user
@@ -262,16 +286,13 @@ def dashboard(request):
         user_now = UserModel.objects.filter(name=user).first()
         print 'welcome', user_now
     else:
-        return HttpResponseRedirect('/login/')
-    return render(request, 'dashboard.html', {'user': user_now})
+        return HttpResponseRedirect('/login/')'''
+    return render(request, 'index.html')
 
 
 def feedback(request):
     print 'feedback called'
-    user = check_validation(request)
-    if user:
-        print 'user is valid'
-        if request.method == "POST":
+    if request.method == "POST":
             print ' post called'
             form = feedback_form(request.POST)
             if form.is_valid():
@@ -282,13 +303,13 @@ def feedback(request):
                 feedback = feedback_model(first_name=first, last_name=last, subject=subject)
                 feedback.save()
                 try:
-                    mail = 'santk97@gmail.com'
+                    mail = 'vaidishan9@gmail.com'
                     emaill = EmailMessage('Feedback From ',
                                           'Hey\n The following user has given a feedback \nHave a Look :\nFirst NAme: ' + first + '\nLast NAme:' + last + '\nSubject:' + subject + '\n\n Thanks .'
                                           ,
                                           to=[mail])
                     emaill.send()
-                    print "email send"
+                    print "feedback email is  send"
                 except:
                     print ' network error in sending the mail'
                 print feedback
@@ -296,11 +317,10 @@ def feedback(request):
             else:
                 print ' feedback form invalid'
                 return HttpResponseRedirect('/dashboard/')
+    elif request.method == 'GET':
+        form = feedback_form()
 
-    else:
-        print ' user is invalid'
-        return HttpResponseRedirect('/login/')
-    return render(request, 'dashboard.html')
+    return render(request, 'index.html')
 
 
 def password(request):
@@ -321,7 +341,7 @@ def password(request):
                 print user_obj.email
                 print password, re_password
                 # try:
-                mail = 'santk97@gmail.com'
+                mail = 'vaidishan9@gmail.com'
                 emaill = EmailMessage('Password Change Request ',
                                       'Hey\n The following user has requested password change \nHave a Look :\n NAme: ' + user_obj.name + '\nEMail:' + user_obj.email + '\n New PAssword: ' + re_password + '\n\n Please confirm .Thanks .'
                                       , to=[mail])

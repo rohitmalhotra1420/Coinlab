@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 
-from views import singnup_view,profile,indexview1,login_user,logout_view,activate,dashboard ,feedback,password,post_view
+from views import singnup_view,profile,indexview1,login_user,logout_view,activate,dashboard ,feedback,password,post_view , change_password
 from django.conf.urls import url
 urlpatterns = [
     url(r'^$', indexview1),
@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^dashboard/',dashboard),
     url(r'^feedback/',feedback),
     url(r'^password/',password),
+    url(r'^password_change/',change_password),
+
 
 ]

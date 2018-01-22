@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME':'coinlab',
+        'NAME':'coinlab1',
         'USER':'root',
         'PASSWORD':'4052',
         'HOST':'127.0.0.1',
