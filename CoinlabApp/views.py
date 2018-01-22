@@ -13,8 +13,8 @@ import requests
 
 
 
-from forms import LoginForm, SignUpForm, Indexform1,  feedback_form, password_form,PostForm,Startform
-from models import UserModel, SessionToken, indexmodel, feedback_model,startmodel,PostModel,project_model
+from forms import LoginForm, SignUpForm, Indexform1,  feedback_form, password_form,PostForm
+from models import UserModel, SessionToken, indexmodel, feedback_model,PostModel,project_model
 
 CLIENT_ID = '2e8b96d3df82469'
 CLIENT_SECRET = 'f6292d93b81e0f055521eb71084b63b9ccc5329d'
@@ -140,7 +140,7 @@ def login_user(request):
                         print "create token start - end"
                         token.save()
                         print 'token saved'
-                        response = HttpResponseRedirect('/dashboard/')
+                        response = HttpResponseRedirect('/profile/')
                         print 'redirected to ', response
                         response.set_cookie(key='session_token', value=token.session_token)
                         return response
@@ -219,36 +219,6 @@ def logout_view(request):
         return redirect('/login/')
 
 
-def start_view(request):
-    if request.method == 'POST':
-        form = Startform(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            sex = form.cleaned_data['sex']
-            age = form.cleaned_data['age']
-            theme = form.cleaned_data['theme']
-            link = form.cleaned_data['link']
-            description = form.cleaned_data['desccription']
-            country = form.cleaned_data['country']
-            # subject = form.cleaned_data['subject']
-            user = indexmodel(name=name, sex=sex, age=age, theme=theme, country=country, link=link,
-                              description=description)
-            user.save()
-            try:
-                # email = form.cleaned_data.get('email')
-                emaill = EmailMessage('New project', 'New project created' + (name),
-                                      to=['instacloneapp@gmail.com'])
-                emaill.send()
-                print "email send to developer"
-            except:
-                print ' network error in sending the mail to developer'
-
-            return render(request, 'dashboard.html')
-        else:
-            print " "
-    elif request.method == 'GET':
-        form = Indexform1()
-    return render(request, 'startproject.html', {'form': form})
 
 
 def dashboard(request):
@@ -263,7 +233,7 @@ def dashboard(request):
         print 'welcome', user_now
     else:
         return HttpResponseRedirect('/login/')
-    return render(request, 'dashboard.html', {'user': user_now})
+    return render(request, 'index.html', {'user': user_now})
 
 
 def feedback(request):
@@ -282,7 +252,7 @@ def feedback(request):
                 feedback = feedback_model(first_name=first, last_name=last, subject=subject)
                 feedback.save()
                 try:
-                    mail = 'santk97@gmail.com'
+                    mail = 'vaidishan9@gmail.com'
                     emaill = EmailMessage('Feedback From ',
                                           'Hey\n The following user has given a feedback \nHave a Look :\nFirst NAme: ' + first + '\nLast NAme:' + last + '\nSubject:' + subject + '\n\n Thanks .'
                                           ,
@@ -300,7 +270,7 @@ def feedback(request):
     else:
         print ' user is invalid'
         return HttpResponseRedirect('/login/')
-    return render(request, 'dashboard.html')
+    return render(request, 'index.html')
 
 
 def password(request):
@@ -321,7 +291,7 @@ def password(request):
                 print user_obj.email
                 print password, re_password
                 # try:
-                mail = 'santk97@gmail.com'
+                mail = 'vaidishan9@gmail.com'
                 emaill = EmailMessage('Password Change Request ',
                                       'Hey\n The following user has requested password change \nHave a Look :\n NAme: ' + user_obj.name + '\nEMail:' + user_obj.email + '\n New PAssword: ' + re_password + '\n\n Please confirm .Thanks .'
                                       , to=[mail])

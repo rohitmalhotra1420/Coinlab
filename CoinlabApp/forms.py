@@ -1,6 +1,6 @@
 
 
-from models import UserModel, indexmodel , feedback_model,PostModel,startmodel
+from models import UserModel, indexmodel , feedback_model,PostModel
 
 
 from django import forms
@@ -26,10 +26,6 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = PostModel
         fields = ['image', 'caption']
-class Startform(forms.ModelForm):
-    class Meta:
-        mode=startmodel
-        fields=['name','sex','age','theme','country','link','description']
 
 
 class feedback_form(forms.ModelForm):
