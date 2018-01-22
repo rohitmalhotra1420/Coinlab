@@ -385,14 +385,15 @@
           
     <div class="col-md-6">
           
-          <form action="">
+          <form method="post" action="/feedback/">
+              {% csrf_token %}
 
     <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    <input type="text" id="fname" name="first_name" placeholder="Your name.." value={{first_name}}>
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-    <label for="subject">Subject</label>
+    <input type="text" id="lname" name="last_name" placeholder="Your last name.." value={{last_name}}>
+    <label for="subject" name="subject" value={{ subject }}>Subject</label>
     <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
      <button class="post-message btn "type="submit"><i class="fa fa-paper-plane"></i> Submit</button>
 

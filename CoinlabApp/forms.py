@@ -26,7 +26,10 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = PostModel
         fields = ['image', 'caption']
-
+class change_pwd_form(forms.ModelForm):
+    class Meta:
+        model=UserModel
+        fields=['password']
 
 class feedback_form(forms.ModelForm):
     class Meta:
