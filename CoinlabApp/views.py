@@ -44,7 +44,7 @@ def singnup_view(request):
             user.save()
             try:
 
-                emaill = EmailMessage('Activation Link', ' HEY...Welcome To CHANGE.IO ....'
+                emaill = EmailMessage('Activation Link', ' HEY...Welcome To COINLAB ....'
                                                          '.click on the link below to get your account activated \n\n '
                                                          'http://127.0.0.1:8000/activate/?email=' + email,
                                       to=[email])
@@ -138,7 +138,7 @@ def login_user(request):
                         try:
 
                             emaill = EmailMessage('You just Logged in...',
-                                                  ' HEY...You just Logged in on for CHANGE.IO ....Report if it was not you'
+                                                  ' HEY...You just Logged in on for COINLAB ....Report if it was not you'
                                                   ,
                                                   to=[email])
                             emaill.send()
@@ -216,7 +216,7 @@ def change_password(request):
                 user_now.save()
                 try:
                     emaill = EmailMessage('You just Changed password...',
-                                          ' HEY...You just changed pssword on for CHANGE.IO ....Report if it was not you'
+                                          ' HEY...You just changed pssword on for COINLAB ....Report if it was not you'
                                           ,
                                           to=[user_now.email])
                     emaill.send()
@@ -362,66 +362,5 @@ def password(request):
     return render(request, 'password.html')
 
 
-def post_view(request):
-    user = check_validation(request)
-    print "post view called"
-    if user:
-        print 'Authentic user'
-        # if request.METHOD == 'GET':
-        #   form = PostForm()
-        if request.method == 'POST':
-            print 'post called'
-            form = PostForm(request.POST, request.FILES)
-            print form
-            if form.is_valid():
-                print 'form is valid'
-                image = form.cleaned_data['image']
-                caption = form.cleaned_data['caption']
-                print user
-                print image
-                print caption
-                print BASE_DIR
-                print "before basedr"
-                post = PostModel(user=user, image=image, caption=caption)
-                post.save()
-                path = (r'C:/Users/ROADBLOCK/Desktop/user_images' + '/' + post.image.url)
-                print "after basedr"
-                print path
-                client = ImgurClient(CLIENT_ID, CLIENT_SECRET)
-                post.image_url = client.upload_from_path(path, anon=True)['link']
-                post.save()
-                redirect('/feed/')
-            else:
-                print ' form is invalid '
-
-        else:
-            print ' get is called'
-            form = PostForm()
-            print form
-            # return (request,'upload.html')
-    else:
-        return redirect('/login/')
-    return render(request, 'upload.html')
 
 
-
-
-'''
-def comment_view(request):
-    user = check_validation(request)
-    if user and request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            post_id = form.cleaned_data.get('post').id
-            comment_text = form.cleaned_data.get('comment_text')
-            comment = CommentModel.objects.create(user=user, post_id=post_id, comment_text=comment_text)
-            comment.save()
-            email = EmailMessage('NEW COMMENT ', ' New Comment on  post', to=['vaidishan9@gmail.com'])
-            email.send()
-
-            return redirect('/feed/')
-        else:
-            return redirect('/feed/')
-    else:
-        return redirect('/login')
-'''
